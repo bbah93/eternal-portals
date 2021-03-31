@@ -1,0 +1,98 @@
+* {
+    box-sizing: border-box;
+  }
+
+  .form-signup {
+    position:absolute;
+    top: 80px;
+    left: 10px ;
+    width: 336px;
+    height: 460px;
+    background: #F2F2F2;
+    border-radius: 6px;
+    padding:17px 18px;
+    box-sizing: border-box;
+    font-family: Avenir;
+    font-style: normal;
+    
+  }
+ 
+  .form-signup > input[type=text], .form-signup > button{
+    width: 299px;
+    height: 38px;
+    border-radius: 6px;
+    
+
+  }
+
+  .form-signup > input[type=text]{
+      margin-bottom: 9px;
+      background: #F2F2F2;
+      border: 1px solid #7D7D7C;
+      padding: 10.56px 0px 10.25px 9.79px;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 19px;
+      color: #000000;
+
+  }
+
+  .create-button{
+    background-color: #5E5ADA;
+    border:0 none #5E5ADA;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    color: #FFFFFF;
+  }
+
+  .form-signup > hr{
+    display: inline-block;
+    width: 120px;
+  }
+  or{
+    display: inline-block;
+    width: 21px;
+    margin-left: 15px ;
+    margin-right: 15px ;
+
+  }
+  .google-button{
+    display: flex;
+    background: #2F80ED;
+    border:0 none #2F80ED;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 19px;
+    color: #FFFFFF;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  .google-img{
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-left: 8px;
+    margin-right: 12px;
+  }
+  .google-text{
+    display: inline-block;
+    height: 18px;
+  }
+  .form-signup > label{
+    display: block;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 16px;
+    color: #000000;
+    float: left;
+    margin-bottom: 10px;
+
+    
+
+}
+.signup-checkbox{
+  float:left;
+ 
+}
+

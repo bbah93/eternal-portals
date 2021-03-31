@@ -1,0 +1,105 @@
+.profile-body{
+    background: #1D1D1B;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.profile-container{
+    width: 770px;
+    display: grid;
+    grid-template-columns: 280px 480px;
+    grid-template-rows: 47px 329px 112px; 
+
+}
+
+
+.profile-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    grid-column:span 1;
+}
+.profile-title p{
+    display: inline;
+    color: #BDBDBD;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 38px;
+    margin-bottom: 10px;
+}
+.profile-title a{
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 27px;
+    text-decoration-line: underline;
+    color: #56CCF2;
+    margin-right: 10px;
+    margin-bottom: 10px;
+
+}
+.profile-image-container{
+    grid-area:2/1;
+    justify-self: start;
+}
+.profile-image{
+    display: block;
+    width: 270px;
+    height: 290px;
+    background: #F2F2F2;
+    border: 3px solid #56CCF2;
+    box-sizing: border-box;
+    border-radius: 6px;
+}
+.profile-form{
+    grid-area: 2/2;
+    justify-self: end;
+    
+}
+.profile-form > input{
+    display: block;
+    width: 470px;
+    height: 40px;
+    margin-bottom: 10px;
+    background: #F2F2F2;
+    border-radius: 6px;
+
+}
+.profile-plan{
+    grid-area:3/span 2 ;
+}
+.profile-plan hr{
+    border: 3px solid #56CCF2;
+    margin-bottom:15px;
+}
+.profile-plan p{
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 38px;
+    color: #BDBDBD;
+    margin-bottom:15px;
+}
+
+.profile-plan button{
+    width: 270px;
+    height: 44px;
+    border-radius: 6px;
+    background: #F2F2F2;
+    border-radius: 6px;
+    font-family: File;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 32px;
+    color: #5E5ADA;
+    margin-right: 40px;
+   
+}
