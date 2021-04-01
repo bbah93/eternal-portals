@@ -15,7 +15,10 @@ export default function NavBar(props){
         <NavLink className="nav-bar-link" to="/colorpage">Color Page</NavLink>
     </li>
     <li>
-        <NavLink className="nav-bar-link" to="/login">Login/SignUp</NavLink>
+        <NavLink className="nav-bar-link" to="/login">Login</NavLink>
+    </li>
+    <li>
+        <NavLink className="nav-bar-link" to="/signup">SignUp</NavLink>
     </li>
     <li>
         <NavLink className="nav-bar-link" to="/profile">Profile</NavLink>

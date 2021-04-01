@@ -3,11 +3,12 @@ import React from 'react';
 import NavBar from './components/NavBar'
 import { Switch } from 'react-router';
 import {Route} from 'react-router-dom'
-
-import AuthPage from './pages/AuthPage';
+import {AuthProvider} from "./context/AuthContext";
 import ColoringPage from './pages/ColoringPage';
 import HomePage from './pages/HomePage';
 import SignUpForm from './components/SignUpForm';
+import LoginForm from './components/LoginForm';
+
 import GalleryPage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
 import { useState } from 'react';
@@ -45,11 +46,14 @@ function App() {
 
 
   return (
+    <AuthProvider>
+
     <div className="App" >
       <NavBar id="header"/>
         <Switch>
           <Route path="/profile" component={ProfilePage} />
-          <Route path="/login" component={SignUpForm}/>
+          <Route path="/login" component={LoginForm}/>
+          <Route path="/signup" component={SignUpForm}/> 
           <Route path="/colorpage">
           <ColoringPage changeColor={setCurrentColor} currentColor={currentColor} fillSize={fillPaths} fillColors={fillColors} onFill={onFillColor}/>
           </Route>
@@ -59,6 +63,8 @@ function App() {
  
 
     </div>
+    </AuthProvider>
+
   );
 }
 

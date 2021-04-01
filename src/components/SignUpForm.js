@@ -1,110 +1,114 @@
 import React, { useRef, useState } from "react"
 import "../css/SignUpForm.css";
-// import { useAuth }  from "../context/AuthContext";
+import googleLogo from "../assets/google_logo.png";
+
+import { useAuth }  from "../context/AuthContext";
 import {useHistory} from "react-router-dom"
 
 export default function SignUpForm() {
 
+console.log(useAuth)
 const emailRef = useRef()
 const passRef = useRef()
 const nameRef = useRef()
 const passConfRef = useRef()
 const numberRef = useRef()
-// const { signup, currentUser, googleSignup } = useAuth()
+const {signup, currentUser, googleSignup } = useAuth()
 const [error, setError] = useState('')
 const [loading, setLoading] = useState(false)
 const history = useHistory()
 
-// async function handleSubmit(e){
-//     e.preventDefault()
-// if (passRef.current.value !== passConfRef.current.value){
-//     return setError('Passwords do not match')
-// }
+async function handleSubmit(e){
+    e.preventDefault()
+if (passRef.current.value !== passConfRef.current.value){
+    return setError('Passwords do not match')
+}
 
-// try {
-//     setError('')
-//     setLoading(true)
-//     await signup(nameRef.current.value, emailRef.current.value, numberRef.current.value ,passRef.current.value)
-//     history.push('/profile')
-// } 
-// catch(error) {
-//     console.log(error)
+try {
+    setError('')
+    setLoading(true)
+    await signup(nameRef.current.value, emailRef.current.value, numberRef.current.value ,passRef.current.value)
+    history.push('/profile')
+} 
+catch(error) {
+    console.log(error)
     
-//    setError("Failed to create an account") 
-//  }
-//  setLoading(false)
-// }
+   setError("Failed to create an account") 
+ }
+ setLoading(false)
+}
 
-// async function handleOnclick(e){
-//     e.preventDefault()
+async function handleOnclick(e){
+    e.preventDefault()
 
-// try {
-//     setError('')
-//     setLoading(true)
-//     await googleSignup()
-//     history.push('/profile')
-// } 
-// catch(error) {
-//     console.log(error)
+try {
+    setError('')
+    setLoading(true)
+    await googleSignup()
+    history.push('/profile')
+} 
+catch(error) {
+    console.log(error)
     
-//    setError("Failed to create an account") 
-//  }
-//  setLoading(false)
-// }
+   setError("Failed to create an account") 
+ }
+ setLoading(false)
+}
      
-        return (
+return (
            
-            <form className = "form-signup" >
-              
-                <input 
-                    type="text" 
-                    name="name" 
-                    placeholder="Name" 
-                    ref={nameRef}
-                    required
-                />
-              
-                <input 
-                    type="text" 
-                    name="email" 
-                    placeholder="Email" 
-                    ref={emailRef}
-                    required
+    <form className = "form-signup" onSubmit={handleSubmit}>
+        {error && alert(error)}
+        {currentUser && JSON.stringify(currentUser.email)}
+        <input 
+            type="text" 
+            name="name" 
+            placeholder="Name" 
+            ref={nameRef}
+            required
+        />
+      
+        <input 
+            type="text" 
+            name="email" 
+            placeholder="Email" 
+            ref={emailRef}
+            required
 
-                />
+        />
 
-                <input 
-                    type="text" 
-                    name="phoneNumber" 
-                    placeholder="Phone Number" 
-                    ref={numberRef}
-                    required
+        <input 
+            type="text" 
+            name="phoneNumber" 
+            placeholder="Phone Number" 
+            ref={numberRef}
+            required
 
-                />
+        />
 
-                <input 
-                    type="text" 
-                    name="password" 
-                    placeholder="Password" 
-                    ref={passRef}
-                    required
+        <input 
+            type="text" 
+            name="password" 
+            placeholder="Password" 
+            ref={passRef}
+            required
 
-                />
-               
-                <input 
-                    type="text" 
-                    name="password confirmation" 
-                    placeholder="Password Confirmation" 
-                    ref={passConfRef}
-                    required
+        />
+       
+        <input 
+            type="text" 
+            name="password confirmation" 
+            placeholder="Password Confirmation" 
+            ref={passConfRef}
+            required
 
-                />
-                
-                <button disabled ={loading} className= "create-button" >Create account</button>
-                <hr /> <span className = "or"> OR</span> <hr />
-                <button disabled={loading} className = "google-button" >Sign up with Google</button>
-                <label htmlFor="checkbox" >
-                    <input className = "signup-checkbox"
+        />
+        
+        <button disabled ={loading} className= "create-button" >Create account</button>
+        <hr /> <span className = "or"> OR</span> <hr />
+        <button disabled ={loading} className = "google-button" onClick={handleOnclick}><img className="google-img" src={googleLogo} alt="google logo" /><span className="google-text">Sign up with Google</span></button>
+        <label htmlFor="checkbox" >
+               <input className = "signup-checkbox"
                         type="checkbox" 
                         name="terms"
                         required
