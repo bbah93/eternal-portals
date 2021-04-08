@@ -6,14 +6,22 @@ import reportWebVitals from './reportWebVitals';
 import store from './redux/store';
 import { Provider } from 'react-redux';
 import {BrowserRouter as Router} from 'react-router-dom';
+import {ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
 
+const client = new ApolloClient({
+  uri: 'http://localhost:4000',
+  cache: new InMemoryCache(),
+});
 
 ReactDOM.render(
+  <ApolloProvider client={client}>
   <Provider store={store}>
   <Router>
       <App />
   </Router>
-</Provider>,
+</Provider>
+</ApolloProvider>,
+
   document.getElementById('root')
 );
 

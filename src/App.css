@@ -164,6 +164,21 @@
   word-wrap: break-word;
 }
 
+.update-button {
+  height: 40px;
+  width: 50%;
+  align-self: start;
+  background-color: #c0723e;
+  color: white;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0px;
+  cursor: grab;
+  display: inline-block;
+  word-wrap: break-word;
+}
+
 .enterportal-button {
   font-family: monospace;
   background-color: #006b72;

@@ -1,19 +1,55 @@
-import React, { useState} from "react";
+import React, { useState, useRef} from "react";
 import "../css/ProfilePage.css";
 import { useAuth } from "../context/AuthContext";
 import { Link, useHistory } from "react-router-dom"
+import { gql, useQuery, useMutation } from '@apollo/client';
+import QueryResults from '../components/query-result';
+
 
 
 export default function ProfilePage(){
 
-    const [error, setError] = useState("")
-    const { currentUser, logout} = useAuth()
-    const history = useHistory()
+        
+        const USER = gql` 
+        query getUsers {
+          user {
+                id
+                firstname
+                lastname
+                portal_url
+                email
+          }
+         }
+       `;
+
+       const UPDATE_USER = gql`
+        mutation updateUser($user: User!){
+                user {
+                id
+                firstname
+                lastname
+                portal_url
+                email
+          }
+        }
+       `
+
+        const emailRef = useRef()
+        const dobRef = useRef()
+        const firstNameRef = useRef()
+        const lastNameRef = useRef()
+
+        const [error, setError] = useState("")
+        const { currentUser, logout} = useAuth()
+        const history = useHistory()
+
+        const {loading, data} = useMutation(UPDATE_USER);
 
    async function handleLogout(){
             setError('')
             try{
                     await logout()
+                    console.log(currentUser.uid)
                     history.push('/login')
             }catch{
                     setError('Failed to log out')
@@ -23,6 +59,7 @@ export default function ProfilePage(){
     if(currentUser != null){
        
     return (
+
         <div className = "profile-body">
         <div className = "profile-container">  
             <div className = "profile-title">
@@ -32,53 +69,40 @@ export default function ProfilePage(){
             <div className = "profile-image-container"><img className= "profile-image"src="" alt="Profile Picture"/></div> 
                 <form className = "profile-form" >
                 
-                <label style={{color: "white"}}>First name</label>
+                <label style={{color: "white"}}>{data?.user.firstName || "First name"}</label>
                     <input 
-                        
-                            type="text" 
-                            name="User's Name" 
-                            // placeholder={} 
+                        ref={firstNameRef}
+                        type="text" 
+                        name="User's Name" 
+                        placeholder={"Eternal"} 
                         
 
                     />
                     
                     <label style={{color: "white"}}>Last name</label>
-                    <input 
-                            type="text" 
-                            name="User's Password" 
-                            // placeholder={}
+                    <input
+                        ref={lastNameRef}
+                        type="text" 
+                        name="User's Password" 
+                        placeholder={"Portals"}
 
                     />
 
                 <label style={{color: "white"}}>Email</label>
-                    <input 
-                            type="text" 
-                            name="User's Email" 
-                            // placeholder="Password Confirmation" 
+                    <input
+                        ref={emailRef}
+                        type="text" 
+                        name="User's Email" 
+                        placeholder="Eteranal@me" 
 
                     />
-                    <label style={{color: "white"}}>Country</label>
-                    <input 
-                            type="text" 
-                            name="User's Country" 
-                            // placeholder={}
-
-                    />
-
-                <label style={{color: "white"}}>City</label>
-                    <input 
-                            type="text" 
-                            name="User's City" 
-                            // placeholder={}
-
-                    />
+                    
 
                 <label style={{color: "white"}}>DOB</label>
-                    <input 
-                            type="text" 
-                            name="User's Data Of Birth" 
-                            // placeholder={}
-
+                    <input     
+                        ref={dobRef}
+                        type="datetime-local" 
+                        name="User's Data Of Birth" 
                     />
 
                     <button>Save Info</button>
@@ -86,17 +110,21 @@ export default function ProfilePage(){
                 </form>
         <div className= "profile-plan">
          {error && alert(error)}
-         <button onClick={handleLogout}>Log Out!</button>
+         <button onClick={handleLogout}>Log Out</button>
+         <button >Friends List 🌐 </button>
+
         </div>
 
         </div>
         </div> 
+
     )
     } else{
             return(
             <div>
                     <h1 style={{color: "white"}}> Not Logged In </h1>
             </div>
+            
             )
     }
 }

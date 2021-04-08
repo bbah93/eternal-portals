@@ -191,6 +191,8 @@ const ColoringPage = (props) =>  {
           </g>
         </svg>
         <button type="button" onClick={saveImage} className={"download-button"} >Download Portal</button>
+        <button type="button" className={"update-button"} >Update Portal</button>
+
         </div>
         <div className="palette-container" >
       <ColorPalette currentColor={props.currentColor} changeColor={props.changeColor} />

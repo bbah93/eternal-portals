@@ -1,3 +1,4 @@
+import { ContactsOutlined } from '@material-ui/icons';
 import React, { useContext, useEffect, useState } from 'react';
 import { auth, provider } from '../firebase'
 
@@ -68,7 +69,11 @@ function googleSignup(){
 
 }
 function login(email, password){
-  return auth.signInWithEmailAndPassword(email, password)
+  
+  const user = auth.signInWithEmailAndPassword(email, password).then(data => {
+        console.log("User ID :-", data.user.uid);
+  })
+  return user
 }
 function logout(email, password){
   return auth.signOut()
